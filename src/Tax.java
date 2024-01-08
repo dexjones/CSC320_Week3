@@ -45,13 +45,20 @@ public class Tax {
 
         return avg;
     }
+    public static double total (double income, double withholding) {
+        double total;
+        total = income - withholding;
+
+        return total;
+    }
+
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
 
-        double income = 0, rate, withholding;
+        double income = 0, rate, withholding, total;
         String s;
         boolean isNumber = false;
-        System.out.println("Enter weekly income: $");
+        System.out.print("Enter weekly income: $");
         s = scnr.nextLine();
 
         while (!isNumber) {
@@ -66,8 +73,13 @@ public class Tax {
         }
         rate = taxRate(income);
         withholding = avgTax(income, rate);
+        total = total(income, withholding);
 
-        System.out.println("The tax rate is %" + (rate*100) + " and the weekly average tax withholding is $" + withholding);
-
+        System.out.print("The tax rate is:\n");
+        System.out.printf("%.2f", rate*100);
+        System.out.print("% \nand the weekly average tax withholding is:\n$");
+        System.out.printf("%.2f", withholding);
+        System.out.print("\nNet income is:\n$");
+        System.out.printf("%.2f", total);
     }
 }
