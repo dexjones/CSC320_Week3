@@ -15,7 +15,8 @@ User input: weekly income
 Output: tax rate
 
 Tax rate class: returns calculated tax rate (has guidelines for calculation)
-Withholdiong class: returns the calculated withheld taxes from weekly income
+Withholding class: returns the calculated withheld taxes from weekly income
+Net Income class: returns the income less taxes
 
 User input validation: Ask for a string, try-catch to make sure input is number
 
@@ -45,7 +46,7 @@ public class Tax {
 
         return avg;
     }
-    public static double total (double income, double withholding) {
+    public static double netIncome (double income, double withholding) {
         double total;
         total = income - withholding;
 
@@ -73,13 +74,13 @@ public class Tax {
         }
         rate = taxRate(income);
         withholding = avgTax(income, rate);
-        total = total(income, withholding);
+        total = netIncome(income, withholding);
 
-        System.out.print("The tax rate is:\n");
+        System.out.print("The tax rate:\n");
         System.out.printf("%.2f", rate*100);
-        System.out.print("% \nand the weekly average tax withholding is:\n$");
+        System.out.print("% \nand the weekly average tax withholding:\n$");
         System.out.printf("%.2f", withholding);
-        System.out.print("\nNet income is:\n$");
+        System.out.print("\nNet income:\n$");
         System.out.printf("%.2f", total);
     }
 }
